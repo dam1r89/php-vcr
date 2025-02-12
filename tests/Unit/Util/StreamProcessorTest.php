@@ -34,7 +34,7 @@ final class StreamProcessorTest extends TestCase
     {
         $mock = $this->getMockBuilder('VCR\Util\StreamProcessor')
             ->disableOriginalConstructor()
-            ->onlyMethods(['intercept', 'restore', 'appendFiltersToStream', 'shouldProcess'])
+            ->setMethods(['intercept', 'restore', 'appendFiltersToStream', 'shouldProcess'])
             ->getMock();
 
         if (null !== $shouldProcess) {
@@ -109,22 +109,8 @@ final class StreamProcessorTest extends TestCase
     public function testUrlStatFileNotFound(): void
     {
         $processor = new StreamProcessor();
-
-        set_error_handler(static function (
-            int $errno,
-            string $errstr,
-            string $errfile = '',
-            int $errline = 0
-        ): void {
-            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
-        }, \E_WARNING);
-
-        try {
-            $this->expectException(\ErrorException::class);
-            $processor->url_stat('file_not_found', 0);
-        } finally {
-            restore_error_handler();
-        }
+        $this->expectWarning();
+        $processor->url_stat('file_not_found', 0);
     }
 
     /**
@@ -209,7 +195,7 @@ final class StreamProcessorTest extends TestCase
     {
         return $this->getMockBuilder(StreamProcessor::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['intercept', 'restore'])
+            ->setMethods(['intercept', 'restore'])
             ->getMock();
     }
 }
