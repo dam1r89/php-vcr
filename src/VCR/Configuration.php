@@ -23,7 +23,7 @@ class Configuration
      *
      * A value of null means all hooks are enabled.
      *
-     * @see LibraryHooks\LibraryHook
+     * @see \VCR\LibraryHooks\LibraryHook
      *
      * @var string[]|null list of enabled LibraryHook names
      */
