@@ -17,7 +17,10 @@ class StreamWrapperHook implements LibraryHook
 
     protected string $status = self::DISABLED;
 
-    protected Response $response;
+    /**
+     * @var Response
+     */
+    protected $response;
 
     /**
      * @var resource current stream context

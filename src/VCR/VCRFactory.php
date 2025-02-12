@@ -17,9 +17,12 @@ class VCRFactory
     /**
      * @var array<string, object>
      */
-    protected array $mapping = [];
+    protected $mapping = [];
 
-    protected static ?self $instance = null;
+    /**
+     * @var self|null
+     */
+    protected static $instance;
 
     protected function __construct(Configuration $config = null)
     {
@@ -90,7 +93,7 @@ class VCRFactory
      *
      * @return mixed an instance for specified class name and parameters
      */
-    public static function get(string $className, array $params = []): mixed
+    public static function get(string $className, array $params = [])
     {
         return self::getInstance()->getOrCreate($className, $params);
     }
@@ -101,7 +104,7 @@ class VCRFactory
      * @param string  $className class name to get a instance for
      * @param mixed[] $params    constructor arguments for this class
      */
-    public function getOrCreate(string $className, array $params = []): mixed
+    public function getOrCreate(string $className, array $params = [])
     {
         $key = $className.implode('-', $params);
 

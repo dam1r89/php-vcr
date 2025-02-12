@@ -37,7 +37,7 @@ class VCR
     /**
      * @param mixed[] $parameters
      */
-    public static function __callStatic(string $method, array $parameters): mixed
+    public static function __callStatic(string $method, array $parameters)
     {
         $callable = [VCRFactory::get(Videorecorder::class), $method];
 
