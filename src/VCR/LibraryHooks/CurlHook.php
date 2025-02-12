@@ -60,6 +60,9 @@ class CurlHook implements LibraryHook
     ) {
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function enable(\Closure $requestCallback): void
     {
         if (self::ENABLED == static::$status) {
@@ -75,6 +78,9 @@ class CurlHook implements LibraryHook
         static::$status = self::ENABLED;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function disable(): void
     {
         self::$requestCallback = null;
@@ -82,6 +88,9 @@ class CurlHook implements LibraryHook
         static::$status = self::DISABLED;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isEnabled(): bool
     {
         return self::ENABLED == self::$status;
@@ -126,7 +135,7 @@ class CurlHook implements LibraryHook
     /**
      * @see http://www.php.net/manual/en/function.curl-init.php
      */
-    public static function curlInit(string $url = null): \CurlHandle|false
+    public static function curlInit(?string $url = null): \CurlHandle|false
     {
         $curlHandle = curl_init($url);
         if (false !== $curlHandle) {
@@ -262,6 +271,8 @@ class CurlHook implements LibraryHook
      * Get information regarding a specific transfer.
      *
      * @see http://www.php.net/manual/en/function.curl-getinfo.php
+     *
+     * @return mixed
      */
     public static function curlGetinfo(\CurlHandle $curlHandle, int $option = 0)
     {

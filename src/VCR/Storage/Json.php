@@ -12,6 +12,9 @@ namespace VCR\Storage;
  */
 class Json extends AbstractStorage
 {
+    /**
+     * {@inheritdoc}
+     */
     public function storeRecording(array $recording): void
     {
         fseek($this->handle, -1, \SEEK_END);
