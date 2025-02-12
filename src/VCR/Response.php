@@ -25,7 +25,7 @@ class Response
      */
     protected array $curlInfo = [];
 
-    protected mixed $httpVersion = null;
+    protected mixed $httpVersion;
 
     /**
      * @param string|array<string, string> $status
